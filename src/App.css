@@ -1,0 +1,84 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+h1 {
+  margin: 0;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin-top: 8px;
+}
+
+.driver-config {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.driver-config input {
+  width: 72px;
+  padding: 4px 6px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+}
+
+.map-panel {
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.map {
+  height: 460px;
+  width: 100%;
+}
+
+/* Tooltip on delivery polylines — readable label on the line */
+.leaflet-tooltip.delivery-line-label {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #f97316;
+  border-radius: 4px;
+  color: #9a3412;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.card {
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: left;
+  min-height: 220px;
+}
+
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.card ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+@media (max-width: 1024px) {
+  .status-grid {
+    grid-template-columns: 1fr;
+  }
+}
