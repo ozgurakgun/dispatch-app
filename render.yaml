@@ -1,0 +1,12 @@
+# Render Blueprint: static Vite build.
+# https://render.com/docs/blueprint-spec
+#
+# After connecting this repo in the Render dashboard, you can apply this blueprint
+# or create a Static Site manually with the same build/publish paths.
+
+services:
+  - type: web
+    name: dispatch-app
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
