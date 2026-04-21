@@ -148,10 +148,12 @@ function App() {
     driversRef.current = drivers
   }, [drivers])
 
-  useEffect(() => {
+  const applyDriverCount = (nextRaw: number) => {
+    const n = Math.max(1, Math.min(20, Math.floor(Number(nextRaw)) || 1))
+    setDriverCount(n)
     setDrivers((prev) => {
       const nextDrivers: Driver[] = []
-      for (let i = 1; i <= driverCount; i += 1) {
+      for (let i = 1; i <= n; i += 1) {
         const id = `d${i}`
         const existing = prev.find((driver) => driver.id === id)
         nextDrivers.push(
@@ -165,12 +167,11 @@ function App() {
       }
       return nextDrivers
     })
-
     setOrders((prev) =>
       prev.map((order) => {
         if (!order.assignedDriverId) return order
         const driverNumber = Number(order.assignedDriverId.replace('d', ''))
-        if (Number.isNaN(driverNumber) || driverNumber <= driverCount) return order
+        if (Number.isNaN(driverNumber) || driverNumber <= n) return order
         if (order.status !== 'en-route') return order
         return {
           ...order,
@@ -180,7 +181,7 @@ function App() {
         }
       }),
     )
-  }, [driverCount])
+  }
 
   useEffect(() => {
     const intakeTimer = setInterval(() => {
@@ -303,7 +304,7 @@ function App() {
               min={1}
               max={20}
               value={driverCount}
-              onChange={(event) => setDriverCount(Number(event.target.value) || 1)}
+              onChange={(event) => applyDriverCount(Number(event.target.value))}
             />
           </label>
           <label className="driver-config">
